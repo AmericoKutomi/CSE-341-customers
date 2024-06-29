@@ -1,0 +1,124 @@
+###  localhost requests
+@localhostName = http://localhost:8080
+
+// CUSTOMERS REQUESTS
+
+### returns a json object with all customers data.
+GET {{localhostName}}/customers
+
+### returns a json object with a specific customer.
+GET {{localhostName}}/customers/667f14069f26d41793a39bc1
+
+### creates a new customer.
+POST {{localhostName}}/customers HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Camille",
+    "lastName":"Warner",
+    "email":"camille.warner@test.com",
+    "favoriteColor":"blue",
+    "birthday":"08/13/1974",
+    "phone":"+1 802 5555-4444",
+    "address": "56 7th Ave",
+    "city": "New Jersey",
+    "state": "NJ",
+    "zip": "98908"
+}
+
+### updates an existing customer.
+PUT {{localhostName}}/customers/667f15a89f26d41793a39bc4 HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Camille",
+    "lastName":"Warner",
+    "email":"camille.warner@test.com",
+    "favoriteColor":"brown",
+    "birthday":"09/13/1974",
+    "phone":"+1 802 5555-4444",
+    "address": "56 7th Ave",
+    "city": "New Jersey",
+    "state": "NJ",
+    "zip": "98908"
+}
+
+### removes an existing customer
+DELETE {{localhostName}}/customers/66742e379ca21b5d1b9668d9 HTTP/1.1
+
+### returns a json object with all products data.
+GET {{localhostName}}/products
+
+### returns a json object with a specific product.
+GET {{localhostName}}/products/650c5812c06bc031e32200a1
+
+// PRODUCTS REQUESTS
+
+### creates a new product.
+POST {{localhostName}}/products HTTP/1.1
+content-type: application/json
+
+{
+  "productName": "Diet Dog Food",
+  "description": "Balanced diet wet food for dogs with chronic renal failure, less phosphorus and protein.",
+  "price": 15.69,
+  "category": "dog vet food",
+  "sku": "600621"
+}
+
+### updates an existing product.
+PUT {{localhostName}}/products/650c5812c06bc031e32200a1 HTTP/1.1
+content-type: application/json
+
+{
+  "name":"Updated Product Name",
+  "description":"Updated Product Description",
+  "price": 19.99
+}
+
+### removes an existing product
+DELETE {{localhostName}}/products/66742e379ca21b5d1b9668d9 HTTP/1.1
+
+
+### opens the API documentation 
+GET {{localhostName}}/api-docs
+
+###  Render requests
+
+@publishedHostName = https://cse-341-customers-i6dr.onrender.com
+
+### returns a json object with all customers data.
+GET {{publishedHostName}}/customers
+
+### returns a json object with a specific customer.
+GET {{publishedHostName}}/customers/650c5812c06bc031e32200a1
+
+### creates a new customer.
+POST {{publishedHostName}}/customers HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Americo",
+    "lastName":"Kutomi",
+    "email":"americo@test.com",
+    "favoriteColor":"yellow",
+    "birthday":"05/31/1999"
+}
+
+### updates an existing customer.
+PUT {{publishedHostName}}/customers/650c5812c06bc031e32200a1 HTTP/1.1
+content-type: application/json
+
+{
+  "firstName":"Bill",
+  "lastName":"Gates",
+  "email":"billgates@test.com",
+  "favoriteColor":"Blue",
+  "birthday":"12/22/1950"
+}
+
+### removes an existing customer
+DELETE {{publishedHostName}}/customers/66742e379ca21b5d1b9668d9 HTTP/1.1
+
+### opens the API documentation 
+GET {{publishedHostName}}/api-docs
