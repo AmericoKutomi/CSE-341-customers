@@ -5,11 +5,10 @@
     "description": "API to handle customers and products",
     "version": "1.0.0"
   },
-  "host": "https://cse-341-customers.onrender.com",
+  "host": "cse-341-customers.onrender.com",
   "basePath": "/",
   "schemes": [
-    
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {
