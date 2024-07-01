@@ -4,13 +4,14 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res, next) => {
   //#swagger.tags=['Products']
-  mongodb.getDb().db().collection('products').find().toArray((err, lists) => {
-    if (err) {
-      res.status(400).json({ message: err });
-    }
+  try {
+    const db = mongodb.getDb().db();
+    const lists = await db.collection('products').find().toArray();
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists); 
-  });
+    res.status(200).json(lists);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }  
 };
 
 const getSingle = async (req, res, next) => {
@@ -19,17 +20,16 @@ const getSingle = async (req, res, next) => {
     res.status(400).json('Must use a valid product id to find a product.');
   }
   const productId = new ObjectId(req.params.id);
-  mongodb.getDb().db().collection('products').find({ _id: productId})
-  .toArray((err, result) => {
-    if (err) {
-      res.status(400).json({ message: err });
-    }
+  try {
+    const db = mongodb.getDb().db();
+    const lists = await db.collection('products').find(productId).toArray();
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result[0]); 
-  });
+    res.status(200).json(lists[0]);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };
   
-
 const createProduct = async (req, res) => {
   //#swagger.tags=['Products']
   const product = {

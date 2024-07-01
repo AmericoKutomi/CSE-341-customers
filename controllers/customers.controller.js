@@ -4,13 +4,14 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res, next) => {
   //#swagger.tags=['Customers']
-  mongodb.getDb().db().collection('customers').find().toArray((err, lists) => {
-    if (err) {
-      res.status(400).json({ message: err });
-    }
+  try {
+    const db = mongodb.getDb().db();
+    const lists = await db.collection('customers').find().toArray();
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists); 
-  });
+    res.status(200).json(lists);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };
 
 const getSingle = async (req, res, next) => {
@@ -19,14 +20,14 @@ const getSingle = async (req, res, next) => {
     res.status(400).json('Must use a valid customer id to find a customer.');
   }
   const customerId = new ObjectId(req.params.id);
-  mongodb.getDb().db().collection('customers').find({ _id: customerId})
-  .toArray((err, result) => {
-    if (err) {
-      res.status(400).json({ message: err });
-    }
+  try {
+    const db = mongodb.getDb().db();
+    const lists = await db.collection('customers').find(customerId).toArray();
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result[0]); 
-  });
+    res.status(200).json(lists[0]);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };
   
 
