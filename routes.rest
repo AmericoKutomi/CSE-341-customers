@@ -1,6 +1,9 @@
 ###  localhost requests
 
-@publishedHostName = http://localhost:8080
+@localhostName = http://localhost:8080
+
+// LOGIN REQUESTS
+GET {{localhostName}}/login
 
 // CUSTOMERS REQUESTS
 
@@ -47,11 +50,6 @@ content-type: application/json
 ### removes an existing customer
 DELETE {{localhostName}}/customers/6682df511dd904faf9e78e94 HTTP/1.1
 
-### returns a json object with all products data.
-GET {{localhostName}}/products
-
-### returns a json object with a specific product.
-GET {{localhostName}}/products/667f1f60906320429e341a8c
 
 // PRODUCTS REQUESTS
 
@@ -88,6 +86,48 @@ content-type: application/json
 ### removes an existing product
 DELETE {{localhostName}}/products/6682e0dc1dd904faf9e78e95 HTTP/1.1
 
+// SELLERS REQUESTS
+
+### returns a json object with all sellers data.
+GET {{localhostName}}/sellers
+
+### returns a json object with a specific seller.
+GET {{localhostName}}/sellers/667f14069f26d41793a39bc1
+
+### creates a new seller.
+POST {{localhostName}}/sellers HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Kennedy",
+  "email": "joe.ken@test.com",
+  "phone": "+1 803 5555-9999",
+  "fixedSalary": 5000,
+  "commissionRate": 0.05
+}
+
+### updates an existing customer.
+PUT {{localhostName}}/sellers/6682df511dd904faf9e78e94  HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Buster",
+    "lastName":"Douglas",
+    "email":"buster.douglas@test.com",
+    "favoriteColor":"gray",
+    "birthday":"11/30/1970",
+    "phone":"+1 803 5555-0000",
+    "address": "451 5th Ave",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "12345"
+}
+
+### removes an existing customer
+DELETE {{localhostName}}/sellers/6682df511dd904faf9e78e94 HTTP/1.1
+
+
 // API DOCUMENTATION
 
 ### opens the API documentation 
@@ -104,7 +144,7 @@ GET {{localhostName}}/api-docs
 GET {{publishedHostName}}/customers
 
 ### returns a json object with a specific customer.
-GET {{publishedHostName}}/customers/667f14069f26d41793a39bc1
+GET {{publishedHostName}}/customers/667ffd0352fbc34c2945854
 
 ### creates a new customer.
 POST {{publishedHostName}}/customers HTTP/1.1
@@ -124,7 +164,7 @@ content-type: application/json
 }
 
 ### updates an existing customer.
-PUT {{publishedHostName}}/customers/6682df511dd904faf9e78e94  HTTP/1.1
+PUT {{publishedHostName}}/customers/668304114dc7d0d9108420e4  HTTP/1.1
 content-type: application/json
 
 {
@@ -141,7 +181,7 @@ content-type: application/json
 }
 
 ### removes an existing customer
-DELETE {{publishedHostName}}/customers/6682df511dd904faf9e78e94 HTTP/1.1
+DELETE {{publishedHostName}}/customers/668304114dc7d0d9108420e4 HTTP/1.1
 
 ### returns a json object with all products data.
 GET {{publishedHostName}}/products
@@ -170,7 +210,7 @@ content-type: application/json
 }
 
 ### updates an existing product.
-PUT {{publishedHostName}}/products/6682e0dc1dd904faf9e78e95 HTTP/1.1
+PUT {{publishedHostName}}/products/668304e84dc7d0d9108420e5 HTTP/1.1
 content-type: application/json
 
 {
@@ -182,7 +222,7 @@ content-type: application/json
 }
 
 ### removes an existing product
-DELETE {{publishedHostName}}/products/6682e0dc1dd904faf9e78e95 HTTP/1.1
+DELETE {{publishedHostName}}/products/668304e84dc7d0d9108420e5 HTTP/1.1
 
 // API DOCUMENTATION
 

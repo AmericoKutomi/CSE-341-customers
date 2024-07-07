@@ -3,6 +3,8 @@ const router = require('express').Router();
 const productController = require('../controllers/products.controller');
 const validation = require('../middleware/validation/product.validation');
 
+const { isAuthenticated } = require('../middleware/authenticate');
+
 // GET list of products
 router.get('/', productController.getAll);
 
@@ -10,12 +12,12 @@ router.get('/', productController.getAll);
 router.get('/:id', productController.getSingle);
 
 // POST create a new product
-router.post('/', validation.saveProduct, productController.createProduct);
+router.post('/', isAuthenticated, validation.saveProduct, productController.createProduct);
 
 // PUT update an existing product
-router.put('/:id', validation.saveProduct, productController.updateProduct);
+router.put('/:id', isAuthenticated, validation.saveProduct, productController.updateProduct);
 
 // DELETE delete an existing product
-router.delete('/:id', productController.deleteProduct);
+router.delete('/:id', isAuthenticated, productController.deleteProduct);
 
 module.exports = router;
